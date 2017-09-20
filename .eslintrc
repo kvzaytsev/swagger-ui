@@ -30,7 +30,7 @@
     "no-underscore-dangle": 0,
     "no-unused-expressions": 1,
     "comma-dangle": 0,
-    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "react/jsx-no-bind": 1,
     "react/display-name": 0
   }

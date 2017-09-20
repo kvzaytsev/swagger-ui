@@ -4,7 +4,8 @@ function makeWindow() {
     history: {},
     open: () => {},
     close: () => {},
-    File: function() {}
+    File: function() {},
+    apiUrl: null
   }
 
   if(typeof window === "undefined") {

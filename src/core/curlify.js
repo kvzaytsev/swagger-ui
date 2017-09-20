@@ -34,5 +34,9 @@ export default function curl( request ){
     }
   }
 
-  return curlified.join( " " )
+  let url = curlified.join( " " );
+    if (window.apiUrl) {
+      url = url.replace(/https?:\/\/[0-9a-z-.:]+\/api\/?/i, window.apiUrl);
+    }
+  return url;
 }
