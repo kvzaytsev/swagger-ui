@@ -6,9 +6,11 @@ import { OrderedMap } from "immutable"
 const RequestBody = ({
   requestBody,
   getComponent,
+  getConfigs,
   specSelectors,
   contentType,
   isExecute,
+  specPath,
   onChange
 }) => {
   const Markdown = getComponent("Markdown")
@@ -21,16 +23,22 @@ const RequestBody = ({
 
   const mediaTypeValue = requestBodyContent.get(contentType)
 
+  if(!mediaTypeValue) {
+    return null
+  }
+
   return <div>
     { requestBodyDescription &&
       <Markdown source={requestBodyDescription} />
     }
     <ModelExample
       getComponent={ getComponent }
+      getConfigs={ getConfigs }
       specSelectors={ specSelectors }
       expandDepth={1}
       isExecute={isExecute}
       schema={mediaTypeValue.get("schema")}
+      specPath={specPath.push("content", contentType)}
       example={<RequestBodyEditor
         requestBody={requestBody}
         onChange={onChange}
@@ -46,10 +54,12 @@ const RequestBody = ({
 RequestBody.propTypes = {
   requestBody: ImPropTypes.orderedMap.isRequired,
   getComponent: PropTypes.func.isRequired,
+  getConfigs: PropTypes.func.isRequired,
   specSelectors: PropTypes.object.isRequired,
-  contentType: PropTypes.string.isRequired,
+  contentType: PropTypes.string,
   isExecute: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  specPath: PropTypes.array.isRequired
 }
 
 export default RequestBody
