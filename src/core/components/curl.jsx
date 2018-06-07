@@ -1,8 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import curlify from "core/curlify"
+import {connect} from "react-redux"
 
-export default class Curl extends React.Component {
+class Curl extends React.Component {
   static propTypes = {
     request: PropTypes.object.isRequired
   }
@@ -13,8 +14,9 @@ export default class Curl extends React.Component {
   }
 
   render() {
-    let { request } = this.props
-    let curl = curlify(request)
+    let { request, curlUrl } = this.props
+    console.log(curlUrl, '-------------------------------')
+    let curl = curlify(request, curlUrl)
 
     return (
       <div>
@@ -27,3 +29,8 @@ export default class Curl extends React.Component {
   }
 
 }
+
+export default connect((state) => {
+  const c = state.get('curlUrl')
+  return {curlUrl: c.get('url') }
+})(Curl)

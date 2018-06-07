@@ -71,7 +71,11 @@ module.exports = function SwaggerUI(opts) {
     ],
 
     // Initial state
-    initialState: { },
+    initialState: {
+      curlUrl: {
+        url: opts.curlUrl,
+      }
+    },
 
     // Inline Plugin
     fn: { },

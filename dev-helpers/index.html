@@ -81,8 +81,25 @@
         SwaggerUIBundle.presets.apis,
         SwaggerUIStandalonePreset
       ],
+      curlUrl: 'testloooool',
       plugins: [
-        SwaggerUIBundle.plugins.DownloadUrl
+        SwaggerUIBundle.plugins.DownloadUrl,
+        (system) => {
+          return {
+            statePlugins: {
+              curlUrl: {
+                actions: {
+                  setCurlUrl: (url) => ({type: 'SET_CURL_URL', payload: url})
+                },
+                reducers: {
+                "SET_CURL_URL": (state, action) => {
+                  return state.set("url", action.payload)
+                }
+              }
+            }
+          }
+        }
+      }
       ],
       layout: "StandaloneLayout"
     })

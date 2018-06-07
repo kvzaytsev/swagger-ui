@@ -1,6 +1,6 @@
 import win from "./window"
 
-export default function curl( request ){
+export default function curl( request, curlUrl ){
   let curlified = []
   let type = ""
   let headers = request.get("headers")
@@ -34,9 +34,10 @@ export default function curl( request ){
     }
   }
 
-  let url = curlified.join( " " );
-    if (window.apiUrl) {
-      url = url.replace(/https?:\/\/[0-9a-z-.:]+\/api\/?/i, window.apiUrl);
-    }
+  let url = curlified.join( " " )
+  console.log(curlUrl, '??')
+  if (curlUrl) {
+    url = url.replace(/https?:\/\/[0-9a-z-.:]+\//i, curlUrl)
+  }
   return url;
 }
