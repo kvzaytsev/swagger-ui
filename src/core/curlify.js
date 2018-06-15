@@ -37,7 +37,7 @@ export default function curl( request, curlUrl ){
   let url = curlified.join( " " )
   console.log(curlUrl, '??')
   if (curlUrl) {
-    url = url.replace(/https?:\/\/[0-9a-z-.:]+\//i, curlUrl)
+    url = url.replace(/https?:\/\/[0-9a-z-.:]+\/(api\/|pdp\/|pep\/)/i, curlUrl)
   }
   return url;
 }
